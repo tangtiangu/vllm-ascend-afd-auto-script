@@ -111,7 +111,7 @@ AFD_CONFIG='{
   "afd_extra_config": {
     "afd_size": "'$AFD_SIZE'"
   },
-  "compute_gate_on_attention": "True",
+  "compute_gate_on_attention": "False",
   "multistream_info": {"enable": "True", "core": "8"},
   "afd_port": "'"$AFD_PORT"'"
 }'
@@ -147,7 +147,7 @@ vllm serve "$MODEL_PATH" \
     --afd-config "$AFD_CONFIG" \
     --async-scheduling \
     --additional-config '{
-        "enable_force_load_balance": "False"
+        "enable_force_load_balance": "True"
     }' \
     --kv-transfer-config '{
         "kv_connector": "DecodeBenchConnector",
