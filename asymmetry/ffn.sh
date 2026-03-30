@@ -101,7 +101,7 @@ LOG_FILE="$LOG_DIR/ffn_${DEVICES//,/_}_${TIMESTAMP}.log"
 echo "LOG_FILE: $LOG_FILE"
 
 # 构建AFD配置JSON
-# "multistream_info": {"enable": "True", "core": "8"}
+# "multistream_info": {"enable": "True", "core_num": "8"}
 AFD_CONFIG='{
   "afd_connector": "camp2pconnector",
   "num_afd_stages": "2",
@@ -110,7 +110,7 @@ AFD_CONFIG='{
     "afd_size": "'$AFD_SIZE'"
   },
   "compute_gate_on_attention": "False",
-  "multistream_info": {"enable": "True", "core": "8"},
+  "multistream_info": {"enable": "True", "core_num": "8"},
   "afd_port": "'"$AFD_PORT"'"
 }'
 echo "AFD_CONFIG:$AFD_CONFIG"
