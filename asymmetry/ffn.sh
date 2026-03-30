@@ -109,7 +109,7 @@ AFD_CONFIG='{
   "afd_extra_config": {
     "afd_size": "'$AFD_SIZE'"
   },
-  "compute_gate_on_attention": "True",
+  "compute_gate_on_attention": "False",
   "multistream_info": {"enable": "True", "core": "8"},
   "afd_port": "'"$AFD_PORT"'"
 }'
@@ -142,8 +142,7 @@ python -m vllm.entrypoints.afd_ffn_server "$MODEL_PATH" \
     --max-model-len $MAX_MODEL_LEN \
     --afd-config "$AFD_CONFIG" \
     --additional-config '{
-        "enable_force_load_balance": "True",
-        "force_load_balance_topn_per_rank": '"$EXPERT_PER_RANK"'
+        "enable_force_load_balance": "False"
     }' \
     --kv-transfer-config '{
         "kv_connector": "DecodeBenchConnector",
