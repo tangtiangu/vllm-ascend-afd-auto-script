@@ -103,6 +103,7 @@ LOG_FILE="$LOG_DIR/attention_${DEVICES//,/_}_${TIMESTAMP}.log"
 echo "LOG_FILE: $LOG_FILE"
 
 # 构建AFD配置JSON
+# "multistream_info": {"enable": "True", "core": "8"}
 AFD_CONFIG='{
   "afd_connector": "camp2pconnector",
   "afd_role": "attention",
@@ -121,6 +122,13 @@ echo "MAX_MODEL_LEN:$MAX_MODEL_LEN"
 echo "EXPERT_PER_RANK:$EXPERT_PER_RANK"
 
 # 启动attention服务器
+# --additional-config '{"mix_placement": "True", "expert_map_path": "/home/ttg/scripts/expert_map8_mix_dsv2_lite.json"}'
+# --additional-config '{
+#     "mix_placement": "True",
+#     "expert_map_path": "/home/ttg/scripts/expert_map8_mix_dsv2_lite.json",
+#     "enable_force_load_balance": "True",
+#     "force_load_balance_topn_per_rank": '"$EXPERT_PER_RANK"'
+#  }' \
 vllm serve "$MODEL_PATH" \
     --data-parallel-size $NUM_DEVICES \
     --max_num_batched_tokens $BSIZE \
@@ -137,7 +145,10 @@ vllm serve "$MODEL_PATH" \
     --ubatch-size $UBATCH_SIZE \
     --afd-config "$AFD_CONFIG" \
     --async-scheduling \
-    --additional-config "{\"enable_force_load_balance\": \"True\", \"force_load_balance_topn_per_rank\": $EXPERT_PER_RANK}" \
+    --additional-config '{
+        "enable_force_load_balance": "True",
+        "force_load_balance_topn_per_rank": '"$EXPERT_PER_RANK"'
+    }' \
     --kv-transfer-config '{
         "kv_connector": "DecodeBenchConnector",
         "kv_role": "kv_both",
