@@ -101,6 +101,7 @@ LOG_FILE="$LOG_DIR/ffn_${DEVICES//,/_}_${TIMESTAMP}.log"
 echo "LOG_FILE: $LOG_FILE"
 
 # 构建AFD配置JSON
+# "multistream_info": {"enable": "True", "core": "8"}
 AFD_CONFIG='{
   "afd_connector": "camp2pconnector",
   "num_afd_stages": "2",
@@ -119,6 +120,12 @@ echo "MAX_MODEL_LEN:$MAX_MODEL_LEN"
 echo "EXPERT_PER_RANK:$EXPERT_PER_RANK"
 
 # 启动ffn服务器
+# --additional-config "{
+#     "mix_placement": "True",
+#     "expert_map_path": "/home/ttg/scripts/expert_map8_mix_dsv2_lite.json",
+#     "enable_force_load_balance": "True",
+#     "force_load_balance_topn_per_rank": '"$EXPERT_PER_RANK"'
+#  }" \
 python -m vllm.entrypoints.afd_ffn_server "$MODEL_PATH" \
     --tensor-parallel-size $NUM_DEVICES \
     --enable-expert-parallel \
@@ -133,7 +140,10 @@ python -m vllm.entrypoints.afd_ffn_server "$MODEL_PATH" \
     --max_num_seqs $BSIZE \
     --max-model-len $MAX_MODEL_LEN \
     --afd-config "$AFD_CONFIG" \
-    --additional-config "{\"enable_force_load_balance\": \"True\", \"force_load_balance_topn_per_rank\": $EXPERT_PER_RANK}" \
+    --additional-config '{
+        "enable_force_load_balance": "True",
+        "force_load_balance_topn_per_rank": '"$EXPERT_PER_RANK"'
+    }' \
     --kv-transfer-config '{
         "kv_connector": "DecodeBenchConnector",
         "kv_role": "kv_both",
