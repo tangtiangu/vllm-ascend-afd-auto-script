@@ -148,7 +148,7 @@ vllm serve "$MODEL_PATH" \
     --additional-config '{
         "enable_force_load_balance": "True",
         "mix_placement": "True",
-        "expert_map_path": "/home/ttg_p2p/scripts/afd/vllm-ascend-afd-auto-script/asymmetry/expert_map8_mix_dsv2_lite.json"
+        "eplb_config":{"expert_map_path": "/home/ttg_p2p/scripts/afd/vllm-ascend-afd-auto-script/asymmetry/expert_map8_mix_dsv2_lite.json"}
     }' \
     --kv-transfer-config '{
         "kv_connector": "DecodeBenchConnector",
