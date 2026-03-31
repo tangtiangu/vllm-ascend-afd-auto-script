@@ -72,7 +72,7 @@ benchmark:
   ffn_arr:
     - 8
   # 输入长度列表
-  input_list: "2048"
+  input_list: "8192"
   # micro batch size 列表
   ubatch_list: "2"
   # 数据量倍数
