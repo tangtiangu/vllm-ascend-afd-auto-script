@@ -127,8 +127,8 @@ echo "EXPERT_PER_RANK:$EXPERT_PER_RANK"
 #     "force_load_balance_topn_per_rank": '"$EXPERT_PER_RANK"'
 #  }" \
 # "force_load_balance_topn_per_rank": '"$EXPERT_PER_RANK"'
-python -m vllm.entrypoints.afd_ffn_server "$MODEL_PATH" \
-    --tensor-parallel-size $NUM_DEVICES \
+vllm serve "$MODEL_PATH" \
+    --data-parallel-size $NUM_DEVICES \
     --enable-expert-parallel \
     --max_num_batched_tokens $BSIZE \
     --compilation-config "$COMPILATION_CONFIG"  \
@@ -142,7 +142,9 @@ python -m vllm.entrypoints.afd_ffn_server "$MODEL_PATH" \
     --max-model-len $MAX_MODEL_LEN \
     --afd-config "$AFD_CONFIG" \
     --additional-config '{
-        "enable_force_load_balance": "True"
+        "enable_force_load_balance": "True",
+        "mix_placement": "True",
+        "expert_map_path": "/home/ttg/scripts/afd/expert_map8_mix_dsv2_lite.json"
     }' \
     --kv-transfer-config '{
         "kv_connector": "DecodeBenchConnector",
