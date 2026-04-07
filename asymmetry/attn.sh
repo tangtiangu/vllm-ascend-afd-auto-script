@@ -112,7 +112,7 @@ AFD_CONFIG='{
     "afd_size": "'$AFD_SIZE'"
   },
   "compute_gate_on_attention": "False",
-  "multistream_info": {"enable": "True", "core_num": "8"},
+  "multistream_info": {"attn_enable": "False", "attn_core_num": "8", "ffn_enable": "True", "ffn_core_num": "8"},
   "afd_port": "'"$AFD_PORT"'"
 }'
 echo "AFD_CONFIG:$AFD_CONFIG"
