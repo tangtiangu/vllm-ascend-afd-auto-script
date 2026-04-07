@@ -39,7 +39,7 @@ profiler:
     warmup: 1
     active: 10
     repeat: 1
-    skip_first: 10000
+    skip_first: 5000
     dir: "/home/ttg_p2p/scripts/afd/attn_profile"
   # FFN Profiler
   ffn:
@@ -48,7 +48,7 @@ profiler:
     warmup: 1
     active: 20
     repeat: 1
-    skip_first: 10000
+    skip_first: 5000
     dir: "/home/ttg_p2p/scripts/afd/ffn_profile"
 
 # ------------------------------------------------------------------------------
