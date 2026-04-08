@@ -107,7 +107,7 @@ echo "LOG_FILE: $LOG_FILE"
 AFD_CONFIG='{
   "afd_connector": "camp2pconnector",
   "afd_role": "attention",
-  "num_afd_stages": "2",
+  "num_afd_stages": "3",
   "afd_extra_config": {
     "afd_size": "'$AFD_SIZE'"
   },

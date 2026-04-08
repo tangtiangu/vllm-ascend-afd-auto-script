@@ -104,7 +104,7 @@ echo "LOG_FILE: $LOG_FILE"
 # "multistream_info": {"enable": "True", "core_num": "8"}
 AFD_CONFIG='{
   "afd_connector": "camp2pconnector",
-  "num_afd_stages": "2",
+  "num_afd_stages": "3",
   "afd_role": "ffn",
   "afd_extra_config": {
     "afd_size": "'$AFD_SIZE'"
