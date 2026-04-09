@@ -12,9 +12,9 @@ common:
   # 日志根目录
   log_dir: "/home/ttg_p2p/scripts/log"
   # 本地IP地址
-  local_ip: "80.48.33.148"
+  local_ip: "80.48.33.145"
   # 网络接口名
-  network_interface: "enp209s0f0"
+  network_interface: "enp209s0f3"
   # HTTP服务端口
   port: 8008
   # 张量并行大小
