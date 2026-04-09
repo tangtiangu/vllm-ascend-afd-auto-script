@@ -8,15 +8,15 @@
 # ------------------------------------------------------------------------------
 common:
   # 模型路径
-  model_path: "/home/cyj/weight/DSV2LiteWeight"
+  model_path: "/home/weight/DSV2LiteWeight"
   # 日志根目录
-  log_dir: "/home/cyj/run_vllm_v13/log"
+  log_dir: "/home/ttg_p2p/scripts/deepEP/log"
   # 本地IP地址
-  local_ip: "80.48.33.145"
+  local_ip: "80.48.33.148"
   # 网络接口名
-  network_interface: "enp209s0f3"
+  network_interface: "enp209s0f0"
   # HTTP服务端口
-  port: 8006
+  port: 8008
   # 张量并行大小
   tp: 1
   # 专家并行配置 (支持多个值，会遍历测试)
@@ -34,15 +34,15 @@ profiler:
     warmup: 1
     active: 10
     repeat: 1
-    skip_first: 1500
-    dir: "/home/cyj/run_vllm_v13/profile"
+    skip_first: 15000
+    dir: "/home/ttg_p2p/scripts/deepEP/profile"
 
 # ------------------------------------------------------------------------------
 # 环境配置
 # ------------------------------------------------------------------------------
 environment:
-  pythonpath: "/home/cyj/code/v13/vllm-ascend:/home/cyj/code/v13/vllm"
-  hccl_buffsize: 600
+  pythonpath: "/home/ttg_p2p/sources/jiusi-vllm-ascend:/home/ttg_p2p/sources/jiusi-vllm"
+  hccl_buffsize: 2048
   ascend_toolkit_path: "/usr/local/Ascend/ascend-toolkit/latest/opp/vendors/CAM/bin/set_env.bash"
 
 # ------------------------------------------------------------------------------
@@ -50,26 +50,27 @@ environment:
 # ------------------------------------------------------------------------------
 benchmark:
   # batch size 列表
-  bsize_list: "48 80 96"
+  bsize_list: "24 32 40 64 80 96"
   # 数据并行大小列表 (支持多个值，会遍历测试)
   dp_list:
-    - 8
     - 4
   # 输入长度列表 (StringConfig Input 的 MinValue/MaxValue，支持多个值，会遍历测试)
   input_len_list:
+    - 2048
     - 4096
     - 8192
+    - 16384
   # 数据量倍数
   data_multiplier: 16
   # 起始设备号
-  start_device: 8
+  start_device: 12
 
 # ------------------------------------------------------------------------------
 # ais_bench 配置
 # ------------------------------------------------------------------------------
 ais_bench:
-  config_py: "/home/cyj/code/benchmark/ais_bench/datasets/synthetic/synthetic_config.py"
-  model_py: "/home/cyj/code/benchmark/ais_bench/benchmark/configs/models/vllm_api/vllm_api_stream_chat.py"
+  config_py: "/home/ttg_p2p/scripts/benchmark/ais_bench/benchmark/configs/datasets/synthetic/synthetic_gen_string.py"
+  model_py: "/home/ttg_p2p/scripts/benchmark/ais_bench/benchmark/configs/models/vllm_api/vllm_api_stream_chat.py"
   # 预热配置
   warmup_request_count: 1536
   warmup_max_out_len: 2
