@@ -10,7 +10,7 @@ common:
   # 模型路径
   model_path: "/home/weight/DSV2LiteWeight"
   # 日志根目录
-  log_dir: "/home/ttg_p2p/scripts/deepEP/log"
+  log_dir: "/home/ttg_p2p/scripts/log"
   # 本地IP地址
   local_ip: "80.48.33.148"
   # 网络接口名

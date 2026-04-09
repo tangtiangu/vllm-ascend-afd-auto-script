@@ -10,7 +10,7 @@ common:
   # 模型路径
   model_path: "/home/weight/DSV2LiteWeight"
   # 日志根目录
-  log_dir: "/home/weight/DSV2LiteWeight"
+  log_dir: "/home/ttg_p2p/scripts/afd/log"
   # 网络配置
   master_addr: "80.48.33.145"
   master_port: "29500"
