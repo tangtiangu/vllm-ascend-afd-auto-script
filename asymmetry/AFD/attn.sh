@@ -85,7 +85,7 @@ done
 
 # 设置环境变量
 export HCCL_BUFFSIZE="$HCCL_BUFFSIZE"
-export VLLM_LOGGING_LEVEL=DEBUG
+export VLLM_LOGGING_LEVEL=INFO
 export ASCEND_RT_VISIBLE_DEVICES="$DEVICES"
 
 # 设置跨机通信环境变量

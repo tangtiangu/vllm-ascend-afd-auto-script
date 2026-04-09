@@ -65,7 +65,7 @@ environment:
 # ------------------------------------------------------------------------------
 benchmark:
   # batch size 列表
-  bsize_list: "24 32 40 48 80 96"
+  bsize_list: "24"
   # attention 卡数数组
   attn_arr:
     - 8
@@ -73,7 +73,7 @@ benchmark:
   ffn_arr:
     - 8
   # 输入长度列表
-  input_list: "2048 4096 8192 16384"
+  input_list: "2048"
   # micro batch size 列表
   ubatch_list: "2"
   # 数据量倍数
