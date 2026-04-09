@@ -78,7 +78,7 @@ benchmark:
   # 输入长度列表
   input_list: "2048 4096 8192 16384"
   # micro batch size 列表
-  ubatch_list: "2,3"
+  ubatch_list: "2 3"
   # 数据量倍数
   data_multiplier: 16
   # 起始设备号
