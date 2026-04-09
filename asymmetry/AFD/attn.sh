@@ -85,7 +85,7 @@ done
 
 # 设置环境变量
 export HCCL_BUFFSIZE="$HCCL_BUFFSIZE"
-export VLLM_LOGGING_LEVEL=INFO
+export VLLM_LOGGING_LEVEL=WARNING
 export ASCEND_RT_VISIBLE_DEVICES="$DEVICES"
 
 # 设置跨机通信环境变量
@@ -123,6 +123,7 @@ echo "EXPERT_PER_RANK:$EXPERT_PER_RANK"
 # 启动attention服务器
 vllm serve "$MODEL_PATH" \
     --data-parallel-size $NUM_DEVICES \
+    --enable-expert-parallel \
     --max_num_batched_tokens $BSIZE \
     --max_num_seqs $BSIZE \
     --compilation-config "$COMPILATION_CONFIG"  \
