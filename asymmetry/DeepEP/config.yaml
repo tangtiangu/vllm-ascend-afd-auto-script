@@ -52,14 +52,14 @@ benchmark:
   bsize_list: "24"
   # 数据并行大小列表 (支持多个值，会遍历测试)
   dp_list:
-    - 4
+    - 8
   # 输入长度列表 (StringConfig Input 的 MinValue/MaxValue，支持多个值，会遍历测试)
   input_len_list:
     - 2048
   # 数据量倍数
   data_multiplier: 16
   # 起始设备号
-  start_device: 12
+  start_device: 8
 
 # ------------------------------------------------------------------------------
 # ais_bench 配置
