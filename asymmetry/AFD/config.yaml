@@ -90,7 +90,7 @@ benchmark:
 # ------------------------------------------------------------------------------
 ais_bench:
   config_py: "/home/ttg_p2p/scripts/benchmark/ais_bench/benchmark/configs/datasets/synthetic/synthetic_gen_string.py"
-  model_py: "//home/ttg_p2p/scripts/benchmark/ais_bench/benchmark/configs/models/vllm_api/vllm_api_stream_chat.py"
+  model_py: "/home/ttg_p2p/scripts/benchmark/ais_bench/benchmark/configs/models/vllm_api/vllm_api_stream_chat.py"
   # 预热配置
   warmup_request_count: 1536
   warmup_max_out_len: 2

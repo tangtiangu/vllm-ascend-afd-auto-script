@@ -192,7 +192,7 @@ for BSIZE in $BSIZE_LIST; do
                 # 预热
                 log "--- 预热 ---"
                 if update_configs $WARMUP_REQUEST_COUNT $batch_size_value $INPUT_LEN $WARMUP_MAX_OUT_LEN; then
-                    ais_bench --models vllm_api_stream_chat --datasets synthetic_gen --mode perf --debug > "${RUN_DIR}/log/warmup.log" 2>&1
+                    ais_bench --models vllm_api_stream_chat --datasets synthetic_gen_string --mode perf --debug > "${RUN_DIR}/log/warmup.log" 2>&1
                 else
                     kill -9 $PID_DECODE 2>/dev/null
                     continue
@@ -208,7 +208,7 @@ for BSIZE in $BSIZE_LIST; do
                 archive_scenario "$RUN_DIR" "$BSIZE" "$DP" "$batch_size_value" "$target_count" "$INPUT_LEN" "$FORMAL_MAX_OUT_LEN" "$EXPERT_PER_RANK"
 
                 START_TIME=$(date +%s)
-                ais_bench --models vllm_api_stream_chat --datasets synthetic_gen --mode perf --debug > "${RUN_DIR}/log/benchmark.log" 2>&1
+                ais_bench --models vllm_api_stream_chat --datasets synthetic_gen_string --mode perf --debug > "${RUN_DIR}/log/benchmark.log" 2>&1
                 DURATION=$(($(date +%s) - START_TIME))
 
                 # 报告

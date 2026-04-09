@@ -322,7 +322,7 @@ for BSIZE in $BSIZE_LIST; do
                 WARMUP_LOG="${RUN_DIR}/log/warmup.log"
                 log "WARMUP_REQUEST_COUNT:$WARMUP_REQUEST_COUNT batch_size_value:$batch_size_value WARMUP_MAX_OUT_LEN:$WARMUP_MAX_OUT_LEN"
                 if update_configs $WARMUP_REQUEST_COUNT $batch_size_value $WARMUP_MAX_OUT_LEN $INPUT_LEN; then
-                    ais_bench --models vllm_api_stream_chat --datasets synthetic_gen --mode perf --debug > "$WARMUP_LOG" 2>&1
+                    ais_bench --models vllm_api_stream_chat --datasets synthetic_gen_string --mode perf --debug > "$WARMUP_LOG" 2>&1
                     log "预热完成。"
                 else
                     log "预热配置失败，跳过。"
@@ -345,7 +345,7 @@ for BSIZE in $BSIZE_LIST; do
                 log "运行 ais_bench..."
 
                 START_TIME=$(date +%s)
-                ais_bench --models vllm_api_stream_chat --datasets synthetic_gen --mode perf --debug > "$FORMAL_LOG" 2>&1
+                ais_bench --models vllm_api_stream_chat --datasets synthetic_gen_string --mode perf --debug > "$FORMAL_LOG" 2>&1
                 EXIT_CODE=$?
                 END_TIME=$(date +%s)
                 DURATION=$((END_TIME - START_TIME))
