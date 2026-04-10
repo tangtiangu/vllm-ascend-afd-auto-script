@@ -64,7 +64,7 @@ environment:
 # ------------------------------------------------------------------------------
 benchmark:
   # batch size 列表
-  bsize_list: "24 32 48 64 80 96"
+  bsize_list: "80 96"
   # attention 卡数数组
   attn_arr:
     - 8
