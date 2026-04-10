@@ -113,7 +113,7 @@ AFD_CONFIG='{
 }'
 echo "AFD_CONFIG:$AFD_CONFIG"
 
-BSIZE=$((BSIZE*3))
+BSIZE=$((BSIZE*2))
 COMPILATION_CONFIG='{"cudagraph_mode": "FULL_DECODE_ONLY", "cudagraph_capture_sizes": ['$BSIZE']}'
 echo "BSIZE:$BSIZE"
 echo "MAX_MODEL_LEN:$MAX_MODEL_LEN"
