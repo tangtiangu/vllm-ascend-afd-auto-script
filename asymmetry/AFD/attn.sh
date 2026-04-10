@@ -121,6 +121,7 @@ echo "MAX_MODEL_LEN:$MAX_MODEL_LEN"
 echo "EXPERT_PER_RANK:$EXPERT_PER_RANK"
 
 # 启动attention服务器
+# --additional-config "{\"enable_force_load_balance\": \"True\", \"force_load_balance_topn_per_rank\": $EXPERT_PER_RANK}" \
 vllm serve "$MODEL_PATH" \
     --data-parallel-size $NUM_DEVICES \
     --enable-expert-parallel \
@@ -138,7 +139,6 @@ vllm serve "$MODEL_PATH" \
     --ubatch-size $UBATCH_SIZE \
     --afd-config "$AFD_CONFIG" \
     --async-scheduling \
-    --additional-config "{\"enable_force_load_balance\": \"True\", \"force_load_balance_topn_per_rank\": $EXPERT_PER_RANK}" \
     --kv-transfer-config '{
         "kv_connector": "DecodeBenchConnector",
         "kv_role": "kv_both",
