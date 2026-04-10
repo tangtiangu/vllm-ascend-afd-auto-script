@@ -119,6 +119,7 @@ echo "MAX_MODEL_LEN:$MAX_MODEL_LEN"
 echo "EXPERT_PER_RANK:$EXPERT_PER_RANK"
 
 # 启动ffn服务器
+BSIZE=$((BSIZE*3))
 vllm serve "$MODEL_PATH" \
     -dp $NUM_DEVICES \
     --enable-expert-parallel \
